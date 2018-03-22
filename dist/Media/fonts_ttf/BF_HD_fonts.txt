@@ -1,0 +1,65 @@
+BLAZING FRUITS HD
+-------------------
+
+Reels UK:
+0) infobar -        	                   
+1) balance, total bet, win       ArmWrestler 43; color white  			
+2) stop autoplay/bet		 ArmWrestler 40; color black 	
+                                                                                              
+
+
+UK Megaspin:
+3) autoplay_popup		 ArmWrestler 93; color white	 
+
+4) megaspin 1 (play/for)         ArmWrestler 40; color black		
+       stop auto/bet 		 ArmWrestler 40; color black		
+
+5) megaspin 2 (play/for)	 ArmWrestler 40; color black				
+       remaining 				
+
+
+
+Gamblescreen:
+6) bank/double to 		ArmWrestler 38; color white	
+7) infobar  	              		
+
+
+Paytable:
+8) wins normal			ArmWrestler 38; color R: 255 G: 237 B: 189
+    wins over		        ArmWrestler 38; color white
+
+
+
+Bonus:
+9) picked -      Swis721 BlkCn BT 54; color R: 254 G: 224 B: 32                                                   
+
+10) missed -      Swis721 BlkCn BT 54; color R: 232 G: 232 B: 232                                            
+
+11) bonus win -   Swis721 BlkCn BT 61; color R: 232 G: 232 B: 232   
+
+12) bonus dialog (bonus_win.png)-   Swis721 BlkCn BT 244; color white      
+
+
+
+Help:
+13) interface fields   (balance, total bet, win)	         ArmWrestler 20; color white
+                       (bet button)                              ArmWrestler 34; color black
+
+14) 1st page bottom text          Calibri Bold 25; color white                                   	
+
+	  
+
+
+Digital panel
+15) ms_confirm.png and ms_confirm2.png             
+
+16) ms_remaining                                   
+
+17) buttons (bet, stop auto)       
+
+
+
+Category dialog  \shared_fullhd\data\slots_blazing_fruits\interface_uk\category_dialog
+18) header          ArmWrestler 45; color R: 255 G: 192 B: 0     
+
+19) text            Calibri Bold 18; color R: 255 G: 237 B: 189          

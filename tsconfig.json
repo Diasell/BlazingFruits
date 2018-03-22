@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "noImplicitAny": false
+  },
+  "files": [
+    "src/main.ts",
+
+    "src/Events/ButtonEvents.ts",
+    "src/Events/AnimationEvents.ts",
+
+    "src/Scenes/ScenesManager.ts",
+    "src/Scenes/GameScenes.ts",
+
+    "src/Layout/Buttons.ts",
+    "src/Layout/WinLineButton.ts",
+    "src/Layout/NumericField.ts",
+    "src/Layout/GambleCard.ts",
+    "src/Layout/TextContainer.ts",
+    "src/Layout/WinLineClass.ts",
+
+    "src/Controllers/Gamble.ts",
+    "src/Controllers/Bonus.ts",
+    "src/Controllers/BaseGame.ts",
+
+    "src/Utils/counter.ts",
+    "src/Utils/fontStyles.ts",
+    "src/Utils/helperFuncs.ts",
+
+    "src/Bonus/FruitObject.ts",
+    "src/Bonus/BonusFinalResult.ts",
+
+    "src/ReelSpinner/NewReel.ts",
+    "src/ReelSpinner/ReelSpinner.ts",
+    "src/ReelSpinner/reelsConfig.ts",
+    "src/ReelSpinner/MainRoundSymbols.ts",
+
+    "src/Sounds/sounds.ts",
+
+    "src/typings/pixi.js.d.ts",
+    "src/typings/howler.js.d.ts"
+  ]
+}

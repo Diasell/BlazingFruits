@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Blazing Fruits</title>
+    <style>* {padding: 0; margin: 0}</style>
+    <link rel="stylesheet" type="text/css" href="spinner.css">
+</head>
+<body>
+    <div id="splash">
+        <div class="spinner" id="spin">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+</body>
+<script>
+
+    var howler = document.createElement('script');
+    howler.onload = function() {
+        window.onload = function(){
+            var pixijs = document.createElement('script');
+                pixijs.onload = function () {
+                    var blazingFruits = document.createElement('script');
+                    blazingFruits.src = "blazing-fruits.js";
+                    document.body.appendChild(blazingFruits);
+                };
+                pixijs.src = "pixi.js";
+                document.body.appendChild(pixijs);
+        };
+    };
+    howler.src = "howler.min.js";
+    document.body.appendChild(howler);
+
+</script>
+
+
+</html>
