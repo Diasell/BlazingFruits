@@ -1,5 +1,5 @@
 # BlazingFruits
 
-Run gulp default task to compile ts
-gulp run - to start the webserver with the game;
+Run <<gulp>>  command to compile ts  
+<<gulp run>> command starts the webserver with the game;
 
