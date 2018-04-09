@@ -244,6 +244,7 @@ loader.load((loader, resources) => {
 
 
     setTimeout(function () {
+        app.stage.scale.set(window.innerWidth/1920, window.innerHeight/1080);
         hideSplash();
     }, 1000);
 
