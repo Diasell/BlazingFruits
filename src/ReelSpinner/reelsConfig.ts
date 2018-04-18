@@ -5,8 +5,8 @@
 export const WinBoxWidth:  number = 254;
 export const WinBoxHeight: number = 244;
 
-export const symbolWidth: number = 247;
-export const symbolHeight: number = 237;
+export const symbolWidth: number = 235;
+export const symbolHeight: number = 155;
 
 export const LineNumberWidth:  number = 83;
 export const LineNumberHeight: number = 73;
@@ -18,22 +18,20 @@ export const StartAnimSpeed: number = 10;
 
 
 export const ReelsConfig = {
-    x: 300,
-    y: 130,
+    x: 50,
+    y: 50,
 
     reelsDelay: 50, // ms between spin animation of the reels
 
     reels: [
-        {'x':0,    'y':0, 'symbolsAmount':3, 'SpinningTime': 1500},
-        {'x':268,  'y':0, 'symbolsAmount':3, 'SpinningTime': 1700},
-        {'x':538,  'y':0, 'symbolsAmount':3, 'SpinningTime': 1900},
-        {'x':806,  'y':0, 'symbolsAmount':3, 'SpinningTime': 2100},
-        {'x':1075, 'y':0, 'symbolsAmount':3, 'SpinningTime': 2300},
+        {'x':20, 'y':10, 'symbolsAmount':3, 'SpinningTime': 1500},
+        {'x':260, 'y':10, 'symbolsAmount':3, 'SpinningTime': 1700},
+        {'x':503, 'y':10, 'symbolsAmount':3, 'SpinningTime': 1900}
     ],
 
-    spinningSpeed: 35,
+    spinningSpeed: 20,
     slamOutAcceleration: 2.25,
-    reelStopDelta: 25,
+    reelStopDelta: 15,
     reelStopSpeed: 5
 };
 

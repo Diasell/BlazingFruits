@@ -3,13 +3,13 @@ import {SceneManager} from "./Scenes/ScenesManager";
 import {GambleController} from "./Controllers/Gamble";
 import * as helperFuncs from "./Utils/helperFuncs";
 import {nextItem} from "./Utils/helperFuncs";
-import {BonusGameScene} from "./Scenes/GameScenes";
+// import {BonusGameScene} from "./Scenes/GameScenes";
 import {BonusGameController} from "./Controllers/Bonus";
 import {BaseGameController} from "./Controllers/BaseGame";
 import {SoundsManagerClass} from "./Sounds/sounds";
 
 
-export const app: PIXI.Application = new PIXI.Application(1920, 1080, '', false);
+export const app: PIXI.Application = new PIXI.Application(960, 536);
 export let SCENE_MANAGER = new SceneManager(app);
 export let SoundsManager;
 export let baseGameScene, gambleScene, bonusGameScene;
@@ -32,25 +32,12 @@ loader.load((loader, resources) => {
     document.body.appendChild(app.view);
 
     let textures = loader.resources.sheet.textures;
-    let spr = new PIXI.Sprite(textures["BG"]);
-    app.stage.addChild(spr);
-
-
 
     // SoundsManager = new SoundsManagerClass(resources);
 
-    // let mainHelpScene = new Scenes.MainHelpScene(resources);
-    // SCENE_MANAGER.AddGameScene('mainHelp', mainHelpScene);
-    // let bonusHelpScene = new Scenes.BonusHelpScene(resources);
-    // SCENE_MANAGER.AddGameScene('bonusHelp', bonusHelpScene);
-    // let gambleHelpScene = new Scenes.GambleHelpScene(resources);
-    // SCENE_MANAGER.AddGameScene('gambleHelp', gambleHelpScene);
-    // let linesHelpScene = new Scenes.WinLinesHelpScene(resources);
-    // SCENE_MANAGER.AddGameScene('linesHelp', linesHelpScene);
-
-    // baseGameScene = new Scenes.BaseGameScene(resources);
-    // SCENE_MANAGER.AddGameScene('baseGame', baseGameScene);
-    // baseGameController = new BaseGameController(baseGameScene);
+    baseGameScene = new Scenes.BaseGameScene(textures);
+    SCENE_MANAGER.AddGameScene('baseGame', baseGameScene);
+    //baseGameController = new BaseGameController(baseGameScene);
 
     // bonusGameScene = new Scenes.BonusGameScene(resources);
     // SCENE_MANAGER.AddGameScene('bonusGame', bonusGameScene);
@@ -61,12 +48,12 @@ loader.load((loader, resources) => {
     // gambleController = new GambleController(gambleScene);
     // SCENE_MANAGER.AddGameScene('gamble', gambleScene);
 
-    // SCENE_MANAGER.goToGameScene('baseGame');
+    SCENE_MANAGER.goToGameScene('baseGame');
 
 
 
     setTimeout(function () {
-        app.stage.scale.set(window.innerWidth/1920, window.innerHeight/1080);
+        // app.stage.scale.set(window.innerWidth/960, window.innerHeight/536);
         hideSplash();
     }, 1000);
 

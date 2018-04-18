@@ -2,7 +2,7 @@
  * Created by tarasg on 10/11/2017.
  */
 import {BaseGameScene} from "../Scenes/GameScenes";
-import {Reel} from "./Reel";
+// import {Reel} from "./Reel";
 import {ReelsConfig} from "./reelsConfig";
 import {ReelN} from "./NewReel";
 
@@ -22,8 +22,8 @@ export class ReelSpinner {
         this.scene = scene;
         this.resources = resources;
         this.reelsArray = [];
-        this.reelSpinSound = new Audio(resources.reelspin.url);
-        this.reelStopSound = new Audio(resources.reelstop.url);
+        // this.reelSpinSound = new Audio(resources.reelspin.url);
+        // this.reelStopSound = new Audio(resources.reelstop.url);
         this.initializeReels();
 
     }
@@ -49,8 +49,8 @@ export class ReelSpinner {
     public spin(results: number[][]): void {
 
         let reelsDelay: number = this.reelsDelay;
-        this.reelSpinSound.currentTime = 0;
-        this.reelSpinSound.play();
+        // this.reelSpinSound.currentTime = 0;
+        // this.reelSpinSound.play();
         for (let i = 0; i<this.reelsArray.length; i++){
             let animation = this.reelsArray[i].startSpinAnimation.bind(this.reelsArray[i]);
             (function (i) {
@@ -61,15 +61,10 @@ export class ReelSpinner {
 
     public slamout(): void {
         let reelsDelay: number = this.reelsDelay;
-        this.reelSpinSound.pause();
+        // this.reelSpinSound.pause();
         for (let i=0; i<this.reelsArray.length; i++) {
             this.reelsArray[i].slamOut();
         }
 
-    }
-
-    public signToEvents(): void {
-        // TODO:
-    //     document.addEventListener('StartButtonPressed')
     }
 }

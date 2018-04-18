@@ -46,41 +46,41 @@ export class BaseGameController {
             'idle' : [
                 {'button': scene.startButton, 'state': 'enable'},
                 {'button': scene.stopButton, 'state': 'hide'},
-                {'button': scene.collectButton, 'state': 'hide'},
-                {'button': scene.startBonusButton, 'state': 'hide'},
-                {'button': scene.maxBetButton, 'state': 'enable'},
-                {'button': scene.autoStartButton, 'state': 'enable'},
-                {'button': scene.cancelAutoStartButton, 'state': 'hide'},
-                {'button': scene.stakeButton, 'state': 'enable'},
-                {'button': scene.gambleButton, 'state': 'disable'},
-                {'button': scene.helpButton, 'state': 'enable'},
-                {'button': scene.menuButton, 'state': 'enable'},
+                // {'button': scene.collectButton, 'state': 'hide'},
+                // {'button': scene.startBonusButton, 'state': 'hide'},
+                // {'button': scene.maxBetButton, 'state': 'enable'},
+                // {'button': scene.autoStartButton, 'state': 'enable'},
+                // {'button': scene.cancelAutoStartButton, 'state': 'hide'},
+                // {'button': scene.stakeButton, 'state': 'enable'},
+                // {'button': scene.gambleButton, 'state': 'disable'},
+                // {'button': scene.helpButton, 'state': 'enable'},
+                // {'button': scene.menuButton, 'state': 'enable'},
             ],
             'round': [
                 {'button': scene.startButton, 'state': 'hide'},
                 {'button': scene.stopButton, 'state': 'enable'},
-                {'button': scene.collectButton, 'state': 'hide'},
-                {'button': scene.startBonusButton, 'state': 'hide'},
-                {'button': scene.maxBetButton, 'state': 'disable'},
-                {'button': scene.autoStartButton, 'state': 'disable'},
-                {'button': scene.cancelAutoStartButton, 'state': 'hide'},
-                {'button': scene.stakeButton, 'state': 'disable'},
-                {'button': scene.gambleButton, 'state': 'disable'},
-                {'button': scene.helpButton, 'state': 'disable'},
-                {'button': scene.menuButton, 'state': 'disable'},
+                // {'button': scene.collectButton, 'state': 'hide'},
+                // {'button': scene.startBonusButton, 'state': 'hide'},
+                // {'button': scene.maxBetButton, 'state': 'disable'},
+                // {'button': scene.autoStartButton, 'state': 'disable'},
+                // {'button': scene.cancelAutoStartButton, 'state': 'hide'},
+                // {'button': scene.stakeButton, 'state': 'disable'},
+                // {'button': scene.gambleButton, 'state': 'disable'},
+                // {'button': scene.helpButton, 'state': 'disable'},
+                // {'button': scene.menuButton, 'state': 'disable'},
             ],
             'collect': [
                 {'button': scene.startButton, 'state': 'hide'},
                 {'button': scene.stopButton, 'state': 'hide'},
-                {'button': scene.collectButton, 'state': 'enable'},
-                {'button': scene.startBonusButton, 'state': 'hide'},
-                {'button': scene.maxBetButton, 'state': 'disable'},
-                {'button': scene.autoStartButton, 'state': 'disable'},
-                {'button': scene.cancelAutoStartButton, 'state': 'hide'},
-                {'button': scene.stakeButton, 'state': 'disable'},
-                {'button': scene.gambleButton, 'state': 'enable'},
-                {'button': scene.helpButton, 'state': 'disable'},
-                {'button': scene.menuButton, 'state': 'disable'},
+                // {'button': scene.collectButton, 'state': 'enable'},
+                // {'button': scene.startBonusButton, 'state': 'hide'},
+                // {'button': scene.maxBetButton, 'state': 'disable'},
+                // {'button': scene.autoStartButton, 'state': 'disable'},
+                // {'button': scene.cancelAutoStartButton, 'state': 'hide'},
+                // {'button': scene.stakeButton, 'state': 'disable'},
+                // {'button': scene.gambleButton, 'state': 'enable'},
+                // {'button': scene.helpButton, 'state': 'disable'},
+                // {'button': scene.menuButton, 'state': 'disable'},
             ]
         };
 
@@ -231,11 +231,11 @@ export class BaseGameController {
     private checkIfBetPossible() {
         if (this.balance < this.currentStake) {
             this.scene.startButton.disable();
-            this.scene.autoStartButton.disable();
+            // this.scene.autoStartButton.disable();
             return false;
         } else {
             this.scene.startButton.enable();
-            this.scene.autoStartButton.enable();
+            // this.scene.autoStartButton.enable();
             return true;
         }
     }
@@ -270,14 +270,14 @@ export class BaseGameController {
     }
 
     private disableWinLineButtons(): void {
-        for (let i=0; i<this.scene.winLinesArray.length; i++) {
-            this.scene.winLinesArray[i].disable();
-        }
+        // for (let i=0; i<this.scene.winLinesArray.length; i++) {
+        //     this.scene.winLinesArray[i].disable();
+        // }
     }
     private enableWinLineButtons(): void {
-        for (let i=0; i<this.scene.winLinesArray.length; i++) {
-            this.scene.winLinesArray[i].enable();
-        }
+        // for (let i=0; i<this.scene.winLinesArray.length; i++) {
+        //     this.scene.winLinesArray[i].enable();
+        // }
     }
 
 

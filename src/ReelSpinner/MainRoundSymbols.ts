@@ -40,85 +40,41 @@ export let SymbolsTexture:    PIXI.BaseTexture = PIXI.BaseTexture.fromImage('../
 export interface ISymbol {
     name: string,
     reelValue: number,
-    texture: PIXI.Texture,
-    sprite: () => PIXI.Sprite,
-    winShowAnimation: () => PIXI.extras.AnimatedSprite
+
 }
 
 
-export const WildSymbol: ISymbol = {
-    name: 'WILD',
-    reelValue: 0,
-    texture: WildTexture,
-    sprite: WildSprite,
-    winShowAnimation: WildWinShow
+export const Symbol1: ISymbol = {
+    name: 'SYM1',
+    reelValue: 1
 };
 
-export const BlazingSymbol: ISymbol = {
-    name: 'LOGO',
-    reelValue: 1,
-    texture: BlazingTexture,
-    sprite: BlazingSpite,
-    winShowAnimation: BlazingWinShow
+export const Symbol3: ISymbol = {
+    name: 'SYM3',
+    reelValue: 3
 };
 
-export const SevenSymbol: ISymbol = {
-    name: 'SEVEN',
-    reelValue: 2,
-    texture: SevenTexture,
-    sprite: SevenSpite,
-    winShowAnimation: SevenWinShow
+export const Symbol4: ISymbol = {
+    name: 'SYM4',
+    reelValue: 4
 };
 
-export const WatermelonSymbol: ISymbol = {
-    name: 'WM',
-    reelValue: 3,
-    texture: WatermelonTexture,
-    sprite: WatermelonSprite,
-    winShowAnimation: WatermelonWinShow
+export const Symbol5: ISymbol = {
+    name: 'SYM5',
+    reelValue: 5
 };
 
-export const PlumSymbol: ISymbol = {
-    name: 'PLUM',
-    reelValue: 4,
-    texture: PlumTexture,
-    sprite: PlumSprite,
-    winShowAnimation: PlumWinShow
+export const Symbol6: ISymbol = {
+    name: 'SYM6',
+    reelValue: 6
 };
 
-export const OrangeSymbol: ISymbol = {
-    name: 'ORANGE',
-    reelValue: 5,
-    texture: OrangeTexture,
-    sprite: OrangeSprite,
-    winShowAnimation: OrangeWinShow
-};
-
-export const LemonSymbol: ISymbol = {
-    name: 'LEMON',
-    reelValue: 6,
-    texture: LemonTexture,
-    sprite: LemonSprite,
-    winShowAnimation: LemonWinShow
-};
-
-export const CherrySymbol: ISymbol = {
-    name: 'CHERRY',
-    reelValue: 7,
-    texture: CherryTexture,
-    sprite: CherrySprite,
-    winShowAnimation: CherryWinShow
-};
-
-export const BonusSymbol: ISymbol = {
-    name: 'BONUS',
-    reelValue: 8,
-    texture: BonusTexture,
-    sprite: BonusSprite,
-    winShowAnimation: BonusWinShow
+export const Symbol7: ISymbol = {
+    name: 'SYM7',
+    reelValue: 7
 };
 
 
 
-export const SYMBOLS = [WildSymbol, BlazingSymbol, SevenSymbol, WatermelonSymbol, PlumSymbol, OrangeSymbol, LemonSymbol, CherrySymbol, BonusSymbol];
-export const showSymbols = [BlazingSymbol, SevenSymbol, WatermelonSymbol, PlumSymbol, OrangeSymbol, LemonSymbol, CherrySymbol];
+export const SYMBOLS = [Symbol1, Symbol3, Symbol4, Symbol5, Symbol6, Symbol7];
+export const showSymbols = [Symbol1, Symbol3, Symbol4, Symbol5, Symbol6, Symbol7];

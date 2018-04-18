@@ -4,7 +4,7 @@
 
 
 import * as config from "../ReelSpinner/reelsConfig"
-import {ISymbol, showSymbols, SYMBOLS} from "./MainRoundSymbols";
+import {ISymbol, SYMBOLS} from "./MainRoundSymbols";
 import {app} from "../main";
 import {ReelSet} from "./ReelSets";
 
@@ -20,6 +20,7 @@ export class ReelN {
     public nextSprite: PIXI.Sprite;
     public nextSymbol: ISymbol;
     public visibleSprites: Array<PIXI.Sprite | any>;
+    private resources: Array<PIXI.Texture | any>
 
     private reelValuesMath: Array<number>;
     private symbolsAmount: number;
@@ -46,6 +47,7 @@ export class ReelN {
         this.x = x;
         this.y = y;
         this.index = index;
+        this.resources = resources;
         this.symbolsAmount = config.ReelsConfig.reels[index].symbolsAmount;
         this.SpinningTime = config.ReelsConfig.reels[index].SpinningTime;
         this.SpinningSpeed = config.ReelsConfig.spinningSpeed;
@@ -58,7 +60,7 @@ export class ReelN {
         this.visibleSprites = [];
         this.winShowTime = 2000;
 
-        this.reelStopSound = new Audio(resources.reelstop.url);
+        // this.reelStopSound = new Audio(resources.reelstop.url);
         this.isSlamout = false;
 
         this.InitializeReel();
@@ -67,7 +69,7 @@ export class ReelN {
     }
 
     private getRandomSymbol(): ISymbol {
-        return showSymbols[Math.floor(Math.random() * showSymbols.length)];
+        return SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
     }
 
     private InitializeReel():void {
@@ -81,7 +83,7 @@ export class ReelN {
 
         for (let i=0; i<this.reelSymbolsAmount; i++) {
             let symbol = this.getRandomSymbol(),
-                sprite = symbol.sprite();
+                sprite = new PIXI.Sprite(this.resources[symbol.name]);
             sprite.y = config.symbolHeight * (this.symbolsAmount - i - 1);
             this.tempReel.push(sprite);
             this.reelContainer.addChildAt(sprite, i);
@@ -147,7 +149,7 @@ export class ReelN {
 
     private setStopSymbols(stopSymbols: number[]): void {
         for (let i=0; i<stopSymbols.length; i++){
-            let texture = SYMBOLS[stopSymbols[i]].texture;
+            let texture = this.resources[SYMBOLS[stopSymbols[i]].name];
             this.tempReel[this.reelSymbolsAmount-i-1].texture = texture;
         }
     }
@@ -178,18 +180,11 @@ export class ReelN {
                     self.reelContainer.y += config.ReelsConfig.reelStopSpeed * timedelta;
                 } else if (self.reelContainer.y >= stopY && down) {
                     down = false;
-                    if (!this.isSlamout){
-                        this.reelStopSound.play();
-                    } else {
-                        if (this.index == 0) {
-                            this.reelStopSound.play();
-                        }
-                    }
                 } else {
                     self.reelContainer.y = Math.max(self.reelContainer.y - Math.floor(config.ReelsConfig.reelStopDelta*timedelta*0.1), startY);
                     if (self.reelContainer.y == startY) {
                         app.ticker.remove(stopAnimation, self);
-                        if (self.index == 4) {
+                        if (self.index == config.ReelsConfig.reels.length-1) {
                             let event = new CustomEvent('LastReelStopped');
                             document.dispatchEvent(event);
                         }
@@ -216,26 +211,23 @@ export class ReelN {
         // hide symbol sprite
         this.tempReel[this.reelSymbolsAmount-index-1].visible = false;
         // get symbol winshow animation
-        let iSymbol = SYMBOLS[symbol];
-        this.WinShowAnimation = iSymbol.winShowAnimation();
+        // let iSymbol = SYMBOLS[symbol];
+        // this.WinShowAnimation = iSymbol.winShowAnimation();
 
-        this.reelContainer.addChild(this.WinShowAnimation);
-        this.WinShowAnimation.y = this.tempReel[this.reelSymbolsAmount-index-1].y;
-        this.WinShowAnimation.loop = true;
-        // this.WinShowAnimation.onComplete = function () {
+        // this.reelContainer.addChild(this.WinShowAnimation);
+        // this.WinShowAnimation.y = this.tempReel[this.reelSymbolsAmount-index-1].y;
+        // this.WinShowAnimation.loop = true;
+
+        // this.WinShowAnimation.play();
+        // setTimeout(function () {
         //     let winShowEndEvent = new CustomEvent('ReelWinShowAnimEnd', {'detail': {'reelIndex': this.index}});
         //     document.dispatchEvent(winShowEndEvent);
-        // }.bind(this);
-        this.WinShowAnimation.play();
-        setTimeout(function () {
-            let winShowEndEvent = new CustomEvent('ReelWinShowAnimEnd', {'detail': {'reelIndex': this.index}});
-            document.dispatchEvent(winShowEndEvent);
-        }.bind(this), this.winShowTime)
+        // }.bind(this), this.winShowTime)
     }
 
     public stopWinShow(index: number): void {
-        this.WinShowAnimation.stop();
-        this.WinShowAnimation.visible = false;
+        // this.WinShowAnimation.stop();
+        // this.WinShowAnimation.visible = false;
         // show symbol sprite
         this.tempReel[this.reelSymbolsAmount-index-1].visible = true
     }
