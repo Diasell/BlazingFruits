@@ -1,10 +1,5 @@
 import * as Scenes from "./Scenes/GameScenes";
 import {SceneManager} from "./Scenes/ScenesManager";
-import {GambleController} from "./Controllers/Gamble";
-import * as helperFuncs from "./Utils/helperFuncs";
-import {nextItem} from "./Utils/helperFuncs";
-// import {BonusGameScene} from "./Scenes/GameScenes";
-import {BonusGameController} from "./Controllers/Bonus";
 import {BaseGameController} from "./Controllers/BaseGame";
 import {SoundsManagerClass} from "./Sounds/sounds";
 
@@ -12,13 +7,11 @@ import {SoundsManagerClass} from "./Sounds/sounds";
 export const app: PIXI.Application = new PIXI.Application(960, 536);
 export let SCENE_MANAGER = new SceneManager(app);
 export let SoundsManager;
-export let baseGameScene, gambleScene, bonusGameScene;
-export let gambleController, bonusController, baseGameController;
+export let baseGameScene;
+export let baseGameController;
+
 const loader = PIXI.loader; // PixiJS exposes a premade instance for you to use.
 
-let helpPageOrder = ['mainHelp', 'bonusHelp', 'gambleHelp', 'linesHelp'];
-
-// Chainable `add` to enqueue a resource
 loader
     .add('sheet', '../Media/sprites.json')
 
@@ -37,25 +30,16 @@ loader.load((loader, resources) => {
 
     baseGameScene = new Scenes.BaseGameScene(textures);
     SCENE_MANAGER.AddGameScene('baseGame', baseGameScene);
-    //baseGameController = new BaseGameController(baseGameScene);
-
-    // bonusGameScene = new Scenes.BonusGameScene(resources);
-    // SCENE_MANAGER.AddGameScene('bonusGame', bonusGameScene);
-    // bonusController = new BonusGameController(bonusGameScene);
-
-
-    // gambleScene = new Scenes.GambleScene(resources);
-    // gambleController = new GambleController(gambleScene);
-    // SCENE_MANAGER.AddGameScene('gamble', gambleScene);
+    baseGameController = new BaseGameController(baseGameScene);
 
     SCENE_MANAGER.goToGameScene('baseGame');
 
+    hideSplash();
 
-
-    setTimeout(function () {
-        // app.stage.scale.set(window.innerWidth/960, window.innerHeight/536);
-        hideSplash();
-    }, 1000);
+    // setTimeout(function () {
+    //     // app.stage.scale.set(window.innerWidth/960, window.innerHeight/536);
+    //     hideSplash();
+    // }, 1000); 
 
 
 });
@@ -69,26 +53,3 @@ function hideSplash(){
         splash.style.display = 'none';
     }, 1000);
 }
-
-document.addEventListener('ExitHelpButtonPressed', function () {
-    SCENE_MANAGER.goToGameScene('baseGame');
-});
-
-document.addEventListener('NextHelpPageButtonPressed', function () {
-    let current_scene = SCENE_MANAGER.currentSceneId,
-        index = helpPageOrder.indexOf(current_scene);
-    SCENE_MANAGER.goToGameScene(helperFuncs.nextItem(helpPageOrder, index));
-});
-
-document.addEventListener('PrevHelpPageButtonPressed', function () {
-    let current_scene = SCENE_MANAGER.currentSceneId,
-        index = helpPageOrder.indexOf(current_scene);
-    SCENE_MANAGER.goToGameScene(helperFuncs.prevItem(helpPageOrder, index));
-});
-
-
-document.addEventListener('AutoStartButtonPressed', function () {
-    console.log('AutoStart Button pressed');
-});
-
-

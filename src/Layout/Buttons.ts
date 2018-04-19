@@ -6,6 +6,7 @@
  */
 import {app} from "../main";
 import * as utils from "../Utils/helperFuncs";
+import {buttonResources} from "./buttonNames";
 
 export class Button {
 
@@ -25,22 +26,14 @@ export class Button {
     private state: string;
 
 
-    constructor(scene: PIXI.Container, x: number, y: number, enabled_img: any, dis_img:  any, pressed_img: any, sound: any, action: Function) {
+    constructor(scene: PIXI.Container, x: number, y: number, buttonName: string, resources:any, action: Function) {
         // enabled_img, dis_img, pressed_img:  PIXI.Textutre or string url to the image
         this.x = x;
         this.y = y;
-        this.sound = sound;
         this.scene = scene;
-        if (typeof enabled_img === "string" && typeof dis_img === "string" && typeof pressed_img === "string" ){
-            this.textureEnabled  =  PIXI.Texture.fromImage(enabled_img);
-            this.textureDisabled = PIXI.Texture.fromImage(dis_img);
-            this.texturePressed  = PIXI.Texture.fromImage(pressed_img);
-        } else {
-            this.textureEnabled  =  enabled_img;
-            this.textureDisabled = dis_img;
-            this.texturePressed  = pressed_img;
-        }
-
+        this.textureEnabled  =  resources[buttonResources[buttonName].enabled];
+        this.textureDisabled = resources[buttonResources[buttonName].disabled];
+        this.texturePressed  = resources[buttonResources[buttonName].pressed];
         this.onButtonClick = action;
 
         this.sprite = new PIXI.Sprite(this.textureEnabled);
@@ -54,8 +47,6 @@ export class Button {
         this.sprite.y = this.y;
         this.sprite.on('pointerdown', function(e){
             this.isDown = true;
-            this.sound.currentTime = 0;
-            this.sound.play();
             this.sprite.texture = this.texturePressed;
         }.bind(this));
 
@@ -129,7 +120,7 @@ export class DenominationPanelButton extends Button {
     public isShown: boolean;
 
     constructor(scene: PIXI.Container, x: number, y: number, fontStyle: any,stakeFontStyle: any, denomBottom:any, denomTop:any, denomMid:any, denomSelect: any, enabled_img: any, dis_img:  any, pressed_img: any, sound: any, action: Function){
-        super(scene, x, y, enabled_img, dis_img, pressed_img, sound, action);
+        super(scene, x, y, enabled_img, enabled_img, action);
         this.isShown = false;
         this.selectedStake = new PIXI.Text('', fontStyle);
         this.fontStyle = fontStyle;

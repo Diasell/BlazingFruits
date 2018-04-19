@@ -4,7 +4,7 @@
 // import {Button} from "../Layout/Buttons";
 import {BaseGameScene} from "../Scenes/GameScenes";
 import {formatStakeAmount, nextItem} from "../Utils/helperFuncs";
-import {bonusController, bonusGameScene, gambleController, gambleScene, SCENE_MANAGER} from "../main";
+import {SCENE_MANAGER} from "../main";
 import {response} from "../ReelSpinner/reelsConfig";
 import {WinShowController} from "./WinShow";
 // import {ButtonEvents} from "../Events/ButtonEvents";
@@ -38,14 +38,14 @@ export class BaseGameController {
 
     constructor(scene: BaseGameScene) {
         this.scene = scene;
-        this.WinShowController = new WinShowController(scene);
+        // this.WinShowController = new WinShowController(scene);
 
-        this.scene.balanceField.addValue(this.balance);
-        this.stakes = scene.stakeButton.stakes;
+        // this.scene.balanceField.addValue(this.balance);
+        // this.stakes = scene.stakeButton.stakes;
         this.buttonStates = {
             'idle' : [
-                {'button': scene.startButton, 'state': 'enable'},
-                {'button': scene.stopButton, 'state': 'hide'},
+                {'button': this.scene.startButton, 'state': 'enable'}
+                // {'button': this.scene.stopButton, 'state': 'hide'},
                 // {'button': scene.collectButton, 'state': 'hide'},
                 // {'button': scene.startBonusButton, 'state': 'hide'},
                 // {'button': scene.maxBetButton, 'state': 'enable'},
@@ -57,8 +57,8 @@ export class BaseGameController {
                 // {'button': scene.menuButton, 'state': 'enable'},
             ],
             'round': [
-                {'button': scene.startButton, 'state': 'hide'},
-                {'button': scene.stopButton, 'state': 'enable'},
+                {'button': this.scene.startButton, 'state': 'hide'}
+                // {'button': this.scene.stopButton, 'state': 'enable'},
                 // {'button': scene.collectButton, 'state': 'hide'},
                 // {'button': scene.startBonusButton, 'state': 'hide'},
                 // {'button': scene.maxBetButton, 'state': 'disable'},
@@ -70,8 +70,8 @@ export class BaseGameController {
                 // {'button': scene.menuButton, 'state': 'disable'},
             ],
             'collect': [
-                {'button': scene.startButton, 'state': 'hide'},
-                {'button': scene.stopButton, 'state': 'hide'},
+                {'button': this.scene.startButton, 'state': 'hide'}
+                // {'button': this.scene.stopButton, 'state': 'hide'},
                 // {'button': scene.collectButton, 'state': 'enable'},
                 // {'button': scene.startBonusButton, 'state': 'hide'},
                 // {'button': scene.maxBetButton, 'state': 'disable'},
@@ -126,7 +126,7 @@ export class BaseGameController {
             this.disableWinLineButtons();
         }
         // set button states:
-        let buttonState = this.buttonStates[state];
+        let buttonState = this.buttonStates[this.state];
         for (let i=0; i<buttonState.length; i++) {
             if (buttonState[i].state == 'enable'){
                 buttonState[i].button.enable();
@@ -152,21 +152,21 @@ export class BaseGameController {
             window.close()
         });
         document.addEventListener('StartBonusButtonPressed', function () {
-            SCENE_MANAGER.goToGameScene('bonusGame');
-            bonusController.startBonus();
+            // SCENE_MANAGER.goToGameScene('bonusGame');
+            // bonusController.startBonus();
         });
         document.addEventListener('HelpButtonPressed', function () {
             SCENE_MANAGER.goToGameScene('mainHelp');
         });
         document.addEventListener('ClickedOnBaseGameScene', function () {
-            if (this.scene.stakeButton.isShown){
-                this.scene.stakeButton.hidePanel();
-            }
+            // if (this.scene.stakeButton.isShown){
+            //     this.scene.stakeButton.hidePanel();
+            // }
         }.bind(this));
 
         document.addEventListener('exitGambleEvent', function () {
-            this.totalWin = gambleController.bank;
-            this.onCollect();
+            // this.totalWin = gambleController.bank;
+            // this.onCollect();
 
         }.bind(this));
 
@@ -186,10 +186,10 @@ export class BaseGameController {
 
     private onStartButtonFunc(){
         this.setState('round');
-        this.scene.totalWinField.counter.reset();
+        // this.scene.totalWinField.counter.reset();
         this.balance -= this.currentStake;
-        this.scene.balanceField.substractValue(this.currentStake);
-        this.WinShowController.updatePayouts(response);
+        // this.scene.balanceField.substractValue(this.currentStake);
+        // this.WinShowController.updatePayouts(response);
         this.totalWin = response.data.gameData.totalWinAmount;
         let stops = this.getStopsArray(response);
         this.scene.REELS.spin(stops);
@@ -212,7 +212,7 @@ export class BaseGameController {
             this.setState('collect');
             this.scene.interactive = true;
             this.WinShowController.playWinShow();
-            this.scene.totalWinField.addValue(this.totalWin);
+            // this.scene.totalWinField.addValue(this.totalWin);
         }
     }
 
@@ -257,8 +257,8 @@ export class BaseGameController {
     }
 
     private onGambleFunc() {
-        SCENE_MANAGER.goToGameScene('gamble');
-        gambleController.startGamble(this.totalWin);
+        // SCENE_MANAGER.goToGameScene('gamble');
+        // gambleController.startGamble(this.totalWin);
     }
 
     private onCollect(){

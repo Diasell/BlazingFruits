@@ -19,14 +19,14 @@ export const StartAnimSpeed: number = 10;
 
 export const ReelsConfig = {
     x: 50,
-    y: 50,
+    y: 60,
 
     reelsDelay: 50, // ms between spin animation of the reels
 
     reels: [
         {'x':20, 'y':10, 'symbolsAmount':3, 'SpinningTime': 1500},
         {'x':260, 'y':10, 'symbolsAmount':3, 'SpinningTime': 1700},
-        {'x':503, 'y':10, 'symbolsAmount':3, 'SpinningTime': 1900}
+        {'x':503, 'y':10, 'symbolsAmount':3, 'SpinningTime': 2200}
     ],
 
     spinningSpeed: 20,
@@ -47,7 +47,7 @@ export const response = {
         "gameData":{
             "_type":"ryota:GameResponse",
             "stake":500,
-            "totalWinAmount":400,
+            "totalWinAmount":0,
             "playIndex":1,
             "nextRound":"0",
             "winLineCount":5,
@@ -81,7 +81,7 @@ export const response = {
                                                     "positionOnReel":0
                                                 },
                                                 {
-                                                    "symbol":6,
+                                                    "symbol":3,
                                                     "reelIndex":0,
                                                     "positionOnReel":1
                                                 },
@@ -91,7 +91,7 @@ export const response = {
                                                     "positionOnReel":2
                                                 },
                                                 {
-                                                    "symbol":6,
+                                                    "symbol":3,
                                                     "reelIndex":1,
                                                     "positionOnReel":0
                                                 },
@@ -106,7 +106,7 @@ export const response = {
                                                     "positionOnReel":2
                                                 },
                                                 {
-                                                    "symbol":6,
+                                                    "symbol":3,
                                                     "reelIndex":2,
                                                     "positionOnReel":0
                                                 },
@@ -121,7 +121,7 @@ export const response = {
                                                     "positionOnReel":2
                                                 },
                                                 {
-                                                    "symbol":6,
+                                                    "symbol":3,
                                                     "reelIndex":3,
                                                     "positionOnReel":0
                                                 },
@@ -146,7 +146,7 @@ export const response = {
                                                     "positionOnReel":1
                                                 },
                                                 {
-                                                    "symbol":6,
+                                                    "symbol":3,
                                                     "reelIndex":4,
                                                     "positionOnReel":2
                                                 }
