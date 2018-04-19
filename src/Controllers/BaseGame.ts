@@ -44,8 +44,8 @@ export class BaseGameController {
         // this.stakes = scene.stakeButton.stakes;
         this.buttonStates = {
             'idle' : [
-                {'button': this.scene.startButton, 'state': 'enable'}
-                // {'button': this.scene.stopButton, 'state': 'hide'},
+                {'button': this.scene.startButton, 'state': 'enable'},
+                {'button': this.scene.stopButton, 'state': 'hide'},
                 // {'button': scene.collectButton, 'state': 'hide'},
                 // {'button': scene.startBonusButton, 'state': 'hide'},
                 // {'button': scene.maxBetButton, 'state': 'enable'},
@@ -57,8 +57,8 @@ export class BaseGameController {
                 // {'button': scene.menuButton, 'state': 'enable'},
             ],
             'round': [
-                {'button': this.scene.startButton, 'state': 'hide'}
-                // {'button': this.scene.stopButton, 'state': 'enable'},
+                {'button': this.scene.startButton, 'state': 'hide'},
+                {'button': this.scene.stopButton, 'state': 'enable'},
                 // {'button': scene.collectButton, 'state': 'hide'},
                 // {'button': scene.startBonusButton, 'state': 'hide'},
                 // {'button': scene.maxBetButton, 'state': 'disable'},
@@ -70,8 +70,8 @@ export class BaseGameController {
                 // {'button': scene.menuButton, 'state': 'disable'},
             ],
             'collect': [
-                {'button': this.scene.startButton, 'state': 'hide'}
-                // {'button': this.scene.stopButton, 'state': 'hide'},
+                {'button': this.scene.startButton, 'state': 'hide'},
+                {'button': this.scene.stopButton, 'state': 'hide'},
                 // {'button': scene.collectButton, 'state': 'enable'},
                 // {'button': scene.startBonusButton, 'state': 'hide'},
                 // {'button': scene.maxBetButton, 'state': 'disable'},

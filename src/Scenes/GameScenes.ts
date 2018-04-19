@@ -44,6 +44,7 @@ export class BaseGameScene extends PIXI.Container {
         // let buttonSound = SoundsManager.allSounds.buttonPress;
 
         this.startButton = new Button(this, 873, 267, 'StartButton', resources, this.onStartButton);
+        this.stopButton = new Button(this, 873, 267, 'StopButton', resources, this.onStopButton);
         // this.stopButton = new Button(this, 1635, 960, resources.stop.url, resources.stop_dis.url, resources.stop_pressed.url, buttonSound, function () {
         //     document.dispatchEvent(ButtonEvents.StopButtonPressed);
         // });
@@ -85,5 +86,9 @@ export class BaseGameScene extends PIXI.Container {
 
     private onStartButton () {
         document.dispatchEvent(ButtonEvents.StartButtonPressed);
+    }
+
+    private onStopButton () {
+        document.dispatchEvent(ButtonEvents.StopButtonPressed);
     }
 }
