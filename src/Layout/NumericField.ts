@@ -4,6 +4,7 @@
 
 import {CountUp} from "../Utils/counter";
 import {app} from "../main";
+import { buttonResources } from "./buttonNames";
 export class NumericField {
 
     public fieldBackGround : PIXI.Texture;
@@ -15,22 +16,15 @@ export class NumericField {
     public x: number;
     public y: number;
     public scene: PIXI.Container;
-    public sound: any;
 
 
-
-    constructor(scene: PIXI.Container,textStyle: any, x: number, y: number, field_img: any, sound: any, x_delta=0) {
+    constructor(scene: PIXI.Container, name:string, x: number, y: number, resources: any, textStyle: any, x_delta=0) {
         // enabled_img, dis_img, pressed_img:  PIXI.Textutre or string url to the image
         this.x = x;
         this.y = y;
         this.textStyle = textStyle;
-        this.sound = sound;
         this.scene = scene;
-        if (typeof field_img === "string"){
-            this.fieldBackGround  =  PIXI.Texture.fromImage(field_img);
-        } else {
-            this.fieldBackGround  =  field_img;
-        }
+        this.fieldBackGround  =  resources[buttonResources[name].background];
 
 
         this.fieldContainer = new PIXI.Container();
@@ -89,15 +83,11 @@ export class BalanceFieldWithHideCreditsAnimation extends NumericField {
     public hide_credits_texture: PIXI.Texture;
     private containerMask: PIXI.Graphics;
 
-    constructor(scene: PIXI.Container,textStyle: any, x: number, y: number, field_img: any, sound: any, show_cr_img:any, hide_cr_img:any){
-        super(scene,textStyle, x, y, field_img, sound);
-        if (typeof show_cr_img === "string" && typeof hide_cr_img === "string"){
-            this.show_credits_texture  =  PIXI.Texture.fromImage(show_cr_img);
-            this.hide_credits_texture = PIXI.Texture.fromImage(hide_cr_img);
-        } else {
-            this.show_credits_texture = show_cr_img;
-            this.hide_credits_texture = hide_cr_img;
-        }
+    constructor(scene: PIXI.Container, name:string, x: number, y: number, resources:any, textStyle: any){
+        super(scene, name, x, y, resources, textStyle);
+
+        this.show_credits_texture  =  resources[buttonResources[name].show_credits];
+        this.hide_credits_texture = resources[buttonResources[name].hide_credits];
 
         // add press to hide img text
         this.hide_credits_sprite = new PIXI.Sprite(this.hide_credits_texture);

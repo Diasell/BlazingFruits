@@ -40,7 +40,7 @@ export class BaseGameController {
         this.scene = scene;
         // this.WinShowController = new WinShowController(scene);
 
-        // this.scene.balanceField.addValue(this.balance);
+        this.scene.balanceField.addValue(this.balance);
         // this.stakes = scene.stakeButton.stakes;
         this.buttonStates = {
             'idle' : [
@@ -148,7 +148,6 @@ export class BaseGameController {
         document.addEventListener('MaxBetButtonPressed', this.onMaxBet);
         document.addEventListener('GambleButtonPressed', this.onGamble);
         document.addEventListener('MenuButtonPressed', function () {
-            //GDKWrapper.GameExit();
             window.close()
         });
         document.addEventListener('StartBonusButtonPressed', function () {
@@ -186,9 +185,9 @@ export class BaseGameController {
 
     private onStartButtonFunc(){
         this.setState('round');
-        // this.scene.totalWinField.counter.reset();
+        this.scene.totalWinField.counter.reset();
         this.balance -= this.currentStake;
-        // this.scene.balanceField.substractValue(this.currentStake);
+        this.scene.balanceField.substractValue(this.currentStake);
         // this.WinShowController.updatePayouts(response);
         this.totalWin = response.data.gameData.totalWinAmount;
         let stops = this.getStopsArray(response);
@@ -212,7 +211,7 @@ export class BaseGameController {
             this.setState('collect');
             this.scene.interactive = true;
             this.WinShowController.playWinShow();
-            // this.scene.totalWinField.addValue(this.totalWin);
+            this.scene.totalWinField.addValue(this.totalWin);
         }
     }
 

@@ -45,36 +45,16 @@ export class BaseGameScene extends PIXI.Container {
 
         this.startButton = new Button(this, 873, 267, 'StartButton', resources, this.onStartButton);
         this.stopButton = new Button(this, 873, 267, 'StopButton', resources, this.onStopButton);
-        // this.stopButton = new Button(this, 1635, 960, resources.stop.url, resources.stop_dis.url, resources.stop_pressed.url, buttonSound, function () {
-        //     document.dispatchEvent(ButtonEvents.StopButtonPressed);
-        // });
 
         // this.maxBetButton = new Button(this, 1420, 960, resources.maxbet.url, resources.maxbet_dis.url, resources.maxbet_pressed.url, buttonSound, function() {
         //     document.dispatchEvent(ButtonEvents.MaxBetButtonPressed);
         // });
 
-        // this.balanceField = new BalanceFieldWithHideCreditsAnimation(this, FontStyles.counterFont, 200, 865, resources.balance_field.texture, buttonSound, resources.show_cr_img.texture, resources.hide_cr_img.texture);
-        // this.totalWinField = new NumericField(this, FontStyles.counterFont, 620, 865, resources.total_win_field.texture, buttonSound);
+        this.balanceField = new BalanceFieldWithHideCreditsAnimation(this, 'BalanceField', 765, 455, resources, FontStyles.counterFont);
+        this.balanceField.fieldContainer.scale.set(0.5, 1); // this added cause assets taken from anoter game and dont fit the size
+        this.totalWinField = new NumericField(this, 'TotalWin', 765, 0, resources, FontStyles.counterFont);
+        this.totalWinField.fieldContainer.scale.set(0.5, 1);
 
-        // this.stakeButton = new DenominationPanelButton(
-        //     this,
-        //     890,
-        //     1005,
-        //     FontStyles.counterFont,
-        //     FontStyles.stakeFont,
-        //     resources.denomBottom.texture,
-        //     resources.denomTop.texture,
-        //     resources.denomMiddle.texture,
-        //     resources.denomSel.texture,
-        //     resources.bet.texture,
-        //     resources.bet_dis.texture,
-        //     resources.bet_pressed.texture,
-        //     buttonSound,
-        //     function ()
-        //     {
-        //         document.dispatchEvent(ButtonEvents.BetButtonPressed);
-        //     }
-        // );
         
         this.interactive = true;
         this.on('pointerdown', function () {

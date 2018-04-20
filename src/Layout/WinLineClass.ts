@@ -43,7 +43,7 @@ export class WinLine {
 
         this.winAmountF_y = PointsMatrix[2][1].y + this.WinBoxTexture.height/2;
         this.winAmountF_x = PointsMatrix[2][1].x - WinAmountFieldTexture.width/2;
-        this.winAmountField = new NumericField(scene, FontStyles.stakeFont, this.winAmountF_x, this.winAmountF_y, WinAmountFieldTexture, {});
+        // this.winAmountField = new NumericField(scene, FontStyles.stakeFont, this.winAmountF_x, this.winAmountF_y, WinAmountFieldTexture, {});
         this.winAmountField.hide();
 
         this.winLineSounds = [
