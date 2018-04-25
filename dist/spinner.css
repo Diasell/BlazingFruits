@@ -24,9 +24,9 @@ h2 {
 
 .spinner {
     position: relative;
-    left: 50%;
+    left: 45%;
     top: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-45%);
     transform: translateY(-50%);
     width: 100px;
     text-align: center;
