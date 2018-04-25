@@ -27,6 +27,7 @@ export class ReelN {
     private reelsContainer: PIXI.Container;
     private reelMask: PIXI.Graphics;
     private WinShowAnimation: PIXI.extras.AnimatedSprite;
+    private winshowSprite: PIXI.Sprite;
     private winShowTime: number;
     private SpinningTime: number;
     private SpinningSpeed: number;
@@ -41,6 +42,13 @@ export class ReelN {
 
     private reelStopSound: any;
     private isSlamout: boolean;
+
+    // -------------
+    private scalex: number;
+    private scaley: number;
+    private scaleCount: number;
+    private scaleStop: number;
+    private spritey: number;
 
 
     constructor(x: number, y: number, index:number, reelsContainer: PIXI.Container, resources:any){
@@ -62,6 +70,11 @@ export class ReelN {
 
         // this.reelStopSound = new Audio(resources.reelstop.url);
         this.isSlamout = false;
+
+
+        //for winshow
+        this.scaleCount = 1
+        this.scaleStop = 5
 
         this.InitializeReel();
         this.initializeMask();
@@ -210,26 +223,72 @@ export class ReelN {
     public playWinShow(symbol: number, index: number): void {
         // hide symbol sprite
         this.tempReel[this.reelSymbolsAmount-index-1].visible = false;
-        // get symbol winshow animation
-        // let iSymbol = SYMBOLS[symbol];
-        // this.WinShowAnimation = iSymbol.winShowAnimation();
+        let iSymbol = SYMBOLS[symbol];
+        this.winshowSprite = new PIXI.Sprite(this.resources[iSymbol.name]);
+        this.reelContainer.addChild(this.winshowSprite);
+        this.winshowSprite.y = this.tempReel[this.reelSymbolsAmount-index-1].y;
 
-        // this.reelContainer.addChild(this.WinShowAnimation);
-        // this.WinShowAnimation.y = this.tempReel[this.reelSymbolsAmount-index-1].y;
-        // this.WinShowAnimation.loop = true;
+        this.winshowSprite.anchor.set(0.5, 0.5);
+        this.winshowSprite.x += this.winshowSprite.width/2;
+        this.winshowSprite.y += this.winshowSprite.height/2;
 
-        // this.WinShowAnimation.play();
-        // setTimeout(function () {
-        //     let winShowEndEvent = new CustomEvent('ReelWinShowAnimEnd', {'detail': {'reelIndex': this.index}});
-        //     document.dispatchEvent(winShowEndEvent);
-        // }.bind(this), this.winShowTime)
+        this.scalex = this.winshowSprite.scale.x;
+        this.scaley = this.winshowSprite.scale.y;
+        
+        app.ticker.add(this.winshow, this)
     }
 
     public stopWinShow(index: number): void {
-        // this.WinShowAnimation.stop();
-        // this.WinShowAnimation.visible = false;
-        // show symbol sprite
+        app.ticker.remove(this.winshow, self);
+        this.scaleCount = 1;
+        this.reelContainer.removeChild(this.winshowSprite);
         this.tempReel[this.reelSymbolsAmount-index-1].visible = true
+
+    }
+
+    private winshow(timedelta) {
+        let self = this;
+        if (document.hasFocus()) {
+            if (this.scaleCount != this.scaleStop) {
+                if (this.scaleCount % 2 == 0) {
+                    this.scaleDown(timedelta)
+                } else {
+                    this.scaleUp(timedelta)
+                }
+            } else {
+                app.ticker.remove(this.winshow, self);
+                this.scaleCount = 1;
+                this.reelContainer.removeChild(this.winshowSprite);
+                let winShowEndEvent = new CustomEvent('ReelWinShowAnimEnd', {'detail': {'reelIndex': this.index}});
+                document.dispatchEvent(winShowEndEvent);
+            }
+        }
+    }
+
+
+    private scaleUp(timedelta) {
+        if (document.hasFocus()){
+            if (this.winshowSprite.scale.x < (this.scalex * 1.2)) {
+                let newValue = [this.winshowSprite.scale.x + 0.008, this.winshowSprite.scale.y + 0.008];
+                this.winshowSprite.scale.set(newValue[0]*timedelta, newValue[1]*timedelta);
+            } else {
+                this.scaleCount++;
+            }
+        }
+        
+    }
+
+    private scaleDown(timedelta) {
+        if (document.hasFocus()) {
+            if (this.winshowSprite.scale.x > this.scalex) {
+                let newValue = [this.winshowSprite.scale.x - 0.008, this.winshowSprite.scale.y - 0.008];
+                this.winshowSprite.scale.set(newValue[0]*timedelta, newValue[1]*timedelta);
+            } else {
+                this.winshowSprite.scale.x = this.scalex;
+                this.winshowSprite.scale.y = this.scaley;
+                this.scaleCount++;
+            }
+        }
     }
 
 

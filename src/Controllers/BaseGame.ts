@@ -38,7 +38,7 @@ export class BaseGameController {
 
     constructor(scene: BaseGameScene) {
         this.scene = scene;
-        // this.WinShowController = new WinShowController(scene);
+        this.WinShowController = new WinShowController(scene);
 
         this.scene.balanceField.addValue(this.balance);
         // this.stakes = scene.stakeButton.stakes;
@@ -188,7 +188,7 @@ export class BaseGameController {
         this.scene.totalWinField.counter.reset();
         this.balance -= this.currentStake;
         this.scene.balanceField.substractValue(this.currentStake);
-        // this.WinShowController.updatePayouts(response);
+        this.WinShowController.updatePayouts(response);
         this.totalWin = response.data.gameData.totalWinAmount;
         let stops = this.getStopsArray(response);
         this.scene.REELS.spin(stops);

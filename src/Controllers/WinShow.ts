@@ -1,4 +1,5 @@
 import {BaseGameController} from "./BaseGame";
+import {ButtonEvents} from "../Events/ButtonEvents"
 /**
  * Created by tarasg on 10/17/2017.
  */
@@ -45,7 +46,7 @@ export class WinShowController {
 
         if (payoutObj.context.symbolPayoutType == "WinLine" && !this.skipWinShow) {
             let winOnLine = payoutObj.payoutData.payoutWinAmount,
-                winline = this.scene.winShowLineArray[payoutObj.context.winLineIndex-1],
+                winline = this.scene.WinLines[payoutObj.context.winLineIndex],
                 winSymbols = this.parseWinSymbols(payoutObj),
                 positionOnReel = this.parsePositionIndex(payoutObj);
             this.currentWinLine = winline;
@@ -61,7 +62,9 @@ export class WinShowController {
             this.playingWinShow = false;
             this.currentWinLineIndex = 0;
             this.currentWinLine.stopWinShow();
+            document.dispatchEvent(ButtonEvents.CollectButtonPressed)
         }
+
 
     }
 

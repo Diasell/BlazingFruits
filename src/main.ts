@@ -3,8 +3,8 @@ import {SceneManager} from "./Scenes/ScenesManager";
 import {BaseGameController} from "./Controllers/BaseGame";
 import {SoundsManagerClass} from "./Sounds/sounds";
 
-
-export const app: PIXI.Application = new PIXI.Application(960, 536);
+let appSize = [960, 536]
+export const app: PIXI.Application = new PIXI.Application(window.innerWidth, window.innerHeight);
 export let SCENE_MANAGER = new SceneManager(app);
 export let SoundsManager;
 export let baseGameScene;
@@ -36,20 +36,23 @@ loader.load((loader, resources) => {
 
     hideSplash();
 
-    // setTimeout(function () {
-    //     // app.stage.scale.set(window.innerWidth/960, window.innerHeight/536);
-    //     hideSplash();
-    // }, 1000); 
-
-
 });
 
 
-function hideSplash(){
+function hideSplash(): void {
     document.getElementById('spin').style.display = 'none';
     let splash = document.getElementById('splash');
+    let scaleArray = getScaleArray()
+    app.stage.scale.set(scaleArray[0], scaleArray[1])
     splash.className ='splashFadeOut';
     setTimeout(function () {
         splash.style.display = 'none';
     }, 1000);
+}
+
+function getScaleArray(): number[] {
+    let result = [];
+    result[0] = window.innerWidth/appSize[0]
+    result[1] = window.innerHeight/appSize[1]
+    return result
 }

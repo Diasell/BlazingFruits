@@ -43,11 +43,11 @@ export const response = {
     "data":{
         "_type":"com.pt.casino.platform.game.GameCommand",
         "windowId":"",
-        "winAmount":0,
+        "winAmount":500,
         "gameData":{
             "_type":"ryota:GameResponse",
             "stake":500,
-            "totalWinAmount":0,
+            "totalWinAmount":500,
             "playIndex":1,
             "nextRound":"0",
             "winLineCount":5,
@@ -170,22 +170,17 @@ export const response = {
                                                 ]
                                             },
                                             "context":{
-                                                "winLineIndex":4,
+                                                "winLineIndex":0,
                                                 "winningSymbols":[
                                                     {
-                                                        "symbol":1,
+                                                        "symbol":3,
                                                         "reelIndex":0,
-                                                        "positionOnReel":0
+                                                        "positionOnReel":1
                                                     },
                                                     {
                                                         "symbol":1,
                                                         "reelIndex":1,
                                                         "positionOnReel":1
-                                                    },
-                                                    {
-                                                        "symbol":1,
-                                                        "reelIndex":2,
-                                                        "positionOnReel":2
                                                     }
 
                                                 ],
@@ -202,36 +197,26 @@ export const response = {
                                                 ]
                                             },
                                             "context":{
-                                                "winLineIndex":6,
+                                                "winLineIndex":1,
                                                 "winningSymbols":[
                                                     {
-                                                        "symbol":6,
+                                                        "symbol":1,
                                                         "reelIndex":0,
-                                                        "positionOnReel":1
+                                                        "positionOnReel":0
                                                     },
                                                     {
-                                                        "symbol":6,
+                                                        "symbol":3,
                                                         "reelIndex":1,
                                                         "positionOnReel":0
                                                     },
                                                     {
-                                                        "symbol":6,
+                                                        "symbol":3,
                                                         "reelIndex":2,
                                                         "positionOnReel":0
-                                                    },
-                                                    {
-                                                        "symbol":6,
-                                                        "reelIndex":3,
-                                                        "positionOnReel":0
-                                                    },
-                                                    {
-                                                        "symbol":0,
-                                                        "reelIndex":4,
-                                                        "positionOnReel":1
                                                     }
 
                                                 ],
-                                                "symbol":6,
+                                                "symbol":3,
                                                 "symbolPayoutType":"WinLine",
                                                 "multiplier":1
                                             }
@@ -244,7 +229,7 @@ export const response = {
                                                 ]
                                             },
                                             "context":{
-                                                "winLineIndex":19,
+                                                "winLineIndex":2,
                                                 "winningSymbols":[
                                                     {
                                                         "symbol":2,
@@ -257,16 +242,10 @@ export const response = {
                                                         "positionOnReel":2
                                                     },
                                                     {
-                                                        "symbol":2,
+                                                        "symbol":1,
                                                         "reelIndex":2,
-                                                        "positionOnReel":0
-                                                    },
-                                                    {
-                                                        "symbol":0,
-                                                        "reelIndex":3,
                                                         "positionOnReel":2
                                                     }
-
                                                 ],
                                                 "symbol":2,
                                                 "symbolPayoutType":"WinLine",

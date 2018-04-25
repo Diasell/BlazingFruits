@@ -1,4 +1,4 @@
-import {PointsMatrix, WinLinesArray} from "../Math/Lines";
+import {PointsMatrix, WinLinesArray, winLinesPos} from "../Math/Lines";
 import {symbolHeight, symbolWidth, WinBoxHeight, WinBoxWidth} from "../ReelSpinner/reelsConfig";
 import {NumericField} from "./NumericField";
 import {FontStyles} from "../Utils/fontStyles";
@@ -6,6 +6,62 @@ import {formatStakeAmount} from "../Utils/helperFuncs";
 /**
  * Created by tarasg on 10/17/2017.
  */
+
+
+ export class SimpleWinLine {
+    public scene;
+    private resources: any;
+    public lineNumber: number;
+    private WinLineTexture : PIXI.Texture;
+    public WinLineSprite: PIXI.Sprite;
+    private currentWinSymbolsAmount: number;
+
+    private line: Array<number>;
+
+    private winAmountField: NumericField;
+    private winAmountF_x: number;
+    private winAmountF_y: number;
+    private mainSymbol : number;
+
+
+    constructor(scene, lineNumber:number, resources) {
+        this.scene = scene;
+        this.resources = resources;
+        this.lineNumber = lineNumber;
+        this.line = WinLinesArray[lineNumber];
+        this.currentWinSymbolsAmount = 0;
+        this.WinLineTexture = resources['Bet_Line']
+
+        this.WinLineSprite = new PIXI.Sprite(this.WinLineTexture)
+        this.WinLineSprite.x = winLinesPos[this.lineNumber][0]
+        this.WinLineSprite.y = winLinesPos[this.lineNumber][1]
+        this.WinLineSprite.visible = false;
+        this.scene.addChild(this.WinLineSprite);
+    }
+
+    public winShow(symbols: number[], indexes: number[], win: number,  mainSymbol: number) {
+        this.WinLineSprite.visible = true;
+
+        let amount = symbols.length;
+        this.currentWinSymbolsAmount = amount;
+
+         // Draw winning symbols and lines between them
+         for (let i=0; i<amount; i++){
+            // Draw animation
+            this.scene.REELS.reelsArray[i].playWinShow(symbols[i], indexes[i]);
+        }
+    }
+
+    public stopWinShow() {
+        this.WinLineSprite.visible = false
+        for (let i=0; i<this.currentWinSymbolsAmount; i++) {
+            this.scene.REELS.reelsArray[i].stopWinShow(this.line[i]);
+        }
+    }
+
+ }
+
+
 export class WinLine {
     public scene;
     private resources: any;
@@ -41,21 +97,21 @@ export class WinLine {
         this.WinBoxTexture = WinBoxTexture;
         this.WinAmountFieldTexture = WinAmountFieldTexture;
 
-        this.winAmountF_y = PointsMatrix[2][1].y + this.WinBoxTexture.height/2;
-        this.winAmountF_x = PointsMatrix[2][1].x - WinAmountFieldTexture.width/2;
-        // this.winAmountField = new NumericField(scene, FontStyles.stakeFont, this.winAmountF_x, this.winAmountF_y, WinAmountFieldTexture, {});
+        this.winAmountF_y = PointsMatrix[1][1].y + this.WinBoxTexture.height/2;
+        this.winAmountF_x = PointsMatrix[1][1].x - WinAmountFieldTexture.width/2;
+        this.winAmountField = new NumericField(scene, 'WinLineAmountField', this.winAmountF_x, this.winAmountF_y, resources, FontStyles.stakeFont);
         this.winAmountField.hide();
 
-        this.winLineSounds = [
-            new Audio(this.resources.bf_symbol.url),
-            new Audio(this.resources.bf_symbol.url),
-            new Audio(this.resources['7_symbol'].url),
-            new Audio(this.resources.wm_symbol.url),
-            new Audio(this.resources.plum_symbol.url),
-            new Audio(this.resources.orange_symbol.url),
-            new Audio(this.resources.lemon_symbol.url),
-            new Audio(this.resources.cherry_symbol.url)
-        ];
+        // this.winLineSounds = [
+        //     new Audio(this.resources.bf_symbol.url),
+        //     new Audio(this.resources.bf_symbol.url),
+        //     new Audio(this.resources['7_symbol'].url),
+        //     new Audio(this.resources.wm_symbol.url),
+        //     new Audio(this.resources.plum_symbol.url),
+        //     new Audio(this.resources.orange_symbol.url),
+        //     new Audio(this.resources.lemon_symbol.url),
+        //     new Audio(this.resources.cherry_symbol.url)
+        // ];
 
 
         this.winBoxes = [
